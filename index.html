@@ -1130,7 +1130,7 @@ input[type=date]::-webkit-datetime-edit{padding:0}
 </div>
 </div>
 <nav class="lm-nav {{nav.cls}}" onClick="{{nav.tap}}" aria-label="Điều hướng chính" style="display: flex; flex-wrap: wrap; align-items: center; gap: 22px; padding-bottom: 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase">
-<div class="lm-thread" role="list" aria-label="Hành trình đặt lịch" style="--p: {{threadP}}"><sc-for list="{{thread}}" as="s" hint-placeholder-count="3"><a role="listitem" href="{{s.href}}" class="lm-ths {{s.cls}}" aria-current="{{s.cur}}" style="text-decoration: none"><span class="lm-thd" aria-hidden="true"><img src="./assets/19156aac699462b5f3f7086a5a16313e.svg" alt="" width="22" height="22"></span><span class="lm-thn">{{s.name}}</span></a></sc-for></div>
+<div class="lm-thread" role="group" aria-label="Hành trình đặt lịch" style="--p: {{threadP}}"><sc-for list="{{thread}}" as="s" hint-placeholder-count="3"><a href="{{s.href}}" class="lm-ths {{s.cls}}" aria-current="{{s.cur}}" style="text-decoration: none"><span class="lm-thd" aria-hidden="true"><img src="./assets/19156aac699462b5f3f7086a5a16313e.svg" alt="" width="22" height="22"></span><span class="lm-thn">{{s.name}}</span></a></sc-for></div>
 <a href="#top" class="{{nav.top}}" style="text-decoration: none">Tủ móng</a>
 <button type="button" class="lm-navbtn {{nav.btnCls}}" onClick="{{nav.menu}}" aria-expanded="{{nav.exp}}" aria-label="Danh sách mục"><span class="lm-navic" aria-hidden="true"><i></i><i></i><i></i></span>{{nav.cur}}</button>
 <a href="#stylist" class="{{nav.stylist}}" style="text-decoration: none">Đoán gu nàng</a>
