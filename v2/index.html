@@ -817,7 +817,7 @@ var seen=false;try{seen=sessionStorage.getItem('bvGate')==='1'||localStorage.get
 var gv=$('#gv'),vT;
 function vidOk(){return !RM&&gv&&typeof gv.play==='function'&&!(navigator.connection&&navigator.connection.saveData&&/2g/.test(navigator.connection.effectiveType||''))}
 function prepVid(){if(!vidOk()||gv.getAttribute('src'))return;var px=Math.min(innerWidth||0,(innerHeight||0)*16/9)*(devicePixelRatio||1),sd=navigator.connection&&navigator.connection.saveData;
-  var wb=!sd&&px>=1000&&/^(probably|maybe)$/.test(gv.canPlayType('video/webm; codecs="vp9, opus"')),q=sd?'720':px>=2000?'1440':px>=1000?'1080':'720';gv.src='a/gate-'+q+(wb?'.webm':'.mp4');gv.preload='auto';try{gv.load()}catch(e){}}
+  var wb=!sd&&px>=1000&&/^(probably|maybe)$/.test(gv.canPlayType('video/webm; codecs="vp9, opus"')),q=sd?'720':px>=2000?'1440':px>=1000?'1080':'720',hv=!wb&&q==='1080'&&/^(probably|maybe)$/.test(gv.canPlayType('video/mp4; codecs="hvc1"'));gv.src='a/gate-'+q+(wb?'.webm':hv?'-hevc.mp4':'.mp4');gv.preload='auto';try{gv.load()}catch(e){}}
 function sndBtn(){var b=$('#gvSnd');b.textContent=gv.muted?'Bật tiếng':'Tắt tiếng';b.setAttribute('aria-pressed',String(!gv.muted))}
 function startVid(){clearTimeout(gT);sound=true;try{localStorage.setItem('bvSnd','1')}catch(e){};sndUi();prepVid();gate.classList.remove('pre','named');gate.classList.add('vid');gv.muted=false;gv.volume=.85;gv.currentTime=0;sndBtn();
   var fail=function(){if(gate.classList.contains('open'))return;gate.classList.remove('vid','pre');openGate('music')};
