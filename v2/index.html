@@ -424,7 +424,7 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
 <body>
 <a class="sr" href="#main">Bỏ qua phần mở đầu</a>
 <div id="gate" class="pre" role="dialog" aria-label="Cổng BAVANAIL">
-  <video id="gv" playsinline webkit-playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1"></video>
+  <video id="gv" muted playsinline webkit-playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1"></video>
   <button class="skip" id="gateSkip" aria-label="Bỏ qua, vào trang">✕</button>
   <div class="lv l"><svg viewBox="0 0 200 400" preserveAspectRatio="none" fill="none" stroke="#E4B293" stroke-width="1.25" stroke-linecap="round"><path d="M14 396V60Q14 14 100 8"/><path d="M30 380V74Q30 34 100 26"/><rect x="48" y="210" width="52" height="150" rx="10"/><path d="M58 120q20-30 42-34"/></svg></div>
   <div class="lv r"><svg viewBox="0 0 200 400" preserveAspectRatio="none" fill="none" stroke="#E4B293" stroke-width="1.25" stroke-linecap="round"><path d="M186 396V60Q186 14 100 8"/><path d="M170 380V74Q170 34 100 26"/><rect x="100" y="210" width="52" height="150" rx="10"/><path d="M142 120q-20-30-42-34"/></svg></div>
@@ -817,7 +817,7 @@ var seen=false;try{seen=sessionStorage.getItem('bvGate')==='1'||localStorage.get
 var gv=$('#gv'),vT;
 function vidOk(){return !RM&&gv&&typeof gv.play==='function'&&!(navigator.connection&&navigator.connection.saveData&&/2g/.test(navigator.connection.effectiveType||''))}
 function prepVid(){if(!vidOk()||gv.getAttribute('src'))return;var px=Math.min(innerWidth||0,(innerHeight||0)*16/9)*(devicePixelRatio||1),sd=navigator.connection&&navigator.connection.saveData;
-  var wb=!sd&&px>=1000&&/^(probably|maybe)$/.test(gv.canPlayType('video/webm; codecs="vp9, opus"')),q=sd?'720':px>=2000?'1440':px>=1000?'1080':'720',hv=!wb&&q==='1080'&&/^(probably|maybe)$/.test(gv.canPlayType('video/mp4; codecs="hvc1"'));gv.src='a/gate-'+q+(wb?'.webm':hv?'-hevc.mp4':'.mp4');gv.preload='auto';try{gv.load()}catch(e){}}
+  var wb=!sd&&px>=1000&&/^(probably|maybe)$/.test(gv.canPlayType('video/webm; codecs="vp9, opus"')),q=sd?'720':px>=2000?'1440':px>=1000?'1080':'720',hv=!wb&&q==='1080'&&(/^(probably|maybe)$/.test(gv.canPlayType('video/mp4; codecs="hvc1.1.6.L93.B0"'))||/^(probably|maybe)$/.test(gv.canPlayType('video/mp4; codecs="hvc1"')));gv.src='a/gate-'+q+(wb?'.webm':hv?'-hevc.mp4':'.mp4');gv.preload='auto';try{gv.load()}catch(e){}}
 function sndBtn(){var b=$('#gvSnd');b.textContent=gv.muted?'Bật tiếng':'Tắt tiếng';b.setAttribute('aria-pressed',String(!gv.muted))}
 function startVid(){clearTimeout(gT);sound=true;try{localStorage.setItem('bvSnd','1')}catch(e){};sndUi();prepVid();gate.classList.remove('pre','named');gate.classList.add('vid');gv.muted=false;gv.volume=.85;gv.currentTime=0;sndBtn();
   var fail=function(){if(gate.classList.contains('open'))return;gate.classList.remove('vid','pre');openGate('music')};
