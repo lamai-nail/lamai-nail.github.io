@@ -415,6 +415,9 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
 @media (max-width:900px){input,select,textarea{font-size:16px!important}}
 #gv{width:min(100vw,calc(100dvh*16/9))}
 .gtag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:rgba(247,193,208,.22);color:#FFD9E3;font-style:normal;font-size:11.5px;font-weight:500;vertical-align:1px}.gtag.k{background:rgba(255,255,255,.1);color:#EBD7E0}
+#pin.quick{margin-top:0}
+.pest:empty{display:none}.pest .pmsg{margin:0;line-height:1.5}
+.st.skip{color:var(--ink2)}.st.skip .dot::before{border-style:dashed;background:transparent}
 </style>
 <script type="importmap">{"imports":{"three":"./a/3d/three.module.min.js"}}</script>
 </head>
@@ -458,6 +461,7 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
           <p class="note">Gợi ý tham khảo theo dáng móng và tông màu; thợ tư vấn lại khi bạn đến.</p>
         </div>
         <button class="quick" id="quick"></button>
+        <button class="quick" id="pin" aria-expanded="false" aria-controls="pinD"><span>Đã có bộ móng trong mơ?</span><b>Gửi ảnh, thợ báo giá</b><i>→</i></button>
       </div>
       <div class="niche">
         <svg class="arch" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" stroke="rgba(255,240,228,.55)" stroke-width=".25" stroke-linecap="round"><path d="M2 99V30Q2 2 50 1Q98 2 98 30V99"/></svg>
@@ -469,7 +473,6 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
       </div>
       <div class="under">
         <p class="mlab" id="mlab"></p>
-        <button class="ghost" id="pin" aria-expanded="false" aria-controls="pinD">＋ Đã có bộ móng trong mơ? Gửi ảnh, thợ báo giá</button>
       </div>
       <div class="lb">
         <p class="eyebrow">Lookbook</p>
@@ -518,7 +521,7 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
         <div class="rows num" id="rcRows"></div>
         <details class="code" id="codeBox"><summary id="codeSum">Có mã giảm / thẻ quà?</summary><div class="offers" id="offers" role="group" aria-label="Ưu đãi bạn dùng được"></div><div class="codeRow"><input id="codeIn" aria-label="Mã giảm hoặc thẻ quà" placeholder="Nhập mã" autocomplete="off" autocapitalize="characters"><button id="codeBtn">Áp dụng</button></div><p class="note" id="codeMsg">Thẻ quà hoặc mã khác thì nhập vào ô trên (bản thử: GIFT50). 1 mã mỗi phiếu, không cộng dồn.</p></details>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px"><span class="note" style="margin:0" id="estNote">Chi phí dự kiến: thợ cùng bạn xác nhận lại trước khi bắt đầu, mọi thay đổi đều hỏi bạn trước.</span><button class="edit" id="edit">Sửa lựa chọn</button></div>
-        <div class="ok" id="ok"><img src="a/buom.svg" alt=""><h2 id="okH">Một cuộc hẹn với vẻ đẹp <em>đang chờ bạn</em></h2><p class="okst" id="okSt" role="status"></p><p class="note" id="okLine"></p><p class="note" id="okNext"></p><p class="note">Đây là bản thử: không có phiếu nào được gửi đi.</p><div class="dep" id="dep"><label for="depSel">Bạn đi từ quận nào? Bavanail tính giờ nên xuất phát</label><select id="depSel"></select><p class="note" id="depOut"></p></div><button class="cocinv" id="cocInv">Mở Ổ kén: xem hành trình hoá bướm của bạn ✦</button></div>
+        <div class="ok" id="ok"><img src="a/buom.svg" alt=""><h2 id="okH">Một cuộc hẹn với vẻ đẹp <em>đang chờ bạn</em></h2><p class="okst" id="okSt" role="status"></p><p class="note" id="okLine"></p><p class="note" id="okNext"></p><div class="dep" id="dep"><label for="depSel">Bạn đi từ quận nào? Bavanail tính giờ nên xuất phát</label><select id="depSel"></select><p class="note" id="depOut"></p></div><button class="cocinv" id="cocInv">Mở Ổ kén: xem hành trình hoá bướm của bạn ✦</button></div>
       </div>
     </div>
   </section>
@@ -897,7 +900,7 @@ function renderPin(){
   $$('#pDet .opt').forEach(function(b){b.onclick=function(){var i=+b.dataset.i,k=pd.d.indexOf(i);if(k>=0)pd.d.splice(k,1);else{pd.d.push(i);if(i<2){var o=1-i,ko=pd.d.indexOf(o);if(ko>=0)pd.d.splice(ko,1)}}pd.d.sort();chime(1244.5);renderPin()}});
   $$('#pLen .opt').forEach(function(b){b.onclick=function(){pd.t=+b.dataset.i;chime(1174.7);renderPin()}});
   var P=pinCalc(pd),e=$('#pEst'),g=$('#pinGo');
-  if(!P){e.innerHTML=pd.img?'<div><span>Bavanail xem ảnh, cùng bạn chọn cách làm phù hợp và báo chi phí dự kiến qua Zalo.</span></div>':'';g.disabled=!pd.img;g.textContent=pd.img?'Gửi ảnh, chọn giờ →':'Thêm ảnh mẫu để gửi thợ';return}
+  if(!P){e.innerHTML=pd.img?'<p class="pmsg">Bavanail xem ảnh, cùng bạn chọn cách làm phù hợp và báo chi phí dự kiến qua Zalo.</p>':'';g.disabled=!pd.img;g.textContent=pd.img?'Gửi ảnh, chọn giờ →':'Thêm ảnh mẫu để gửi thợ';return}
   e.innerHTML=pinRows(P)+'<div class="tot"><span>Khoảng giá · '+HM(P.m)+'</span><span>'+K(P.p)+' – '+K(P.hi)+'</span></div>';g.disabled=false;g.textContent='Chốt ước tính → Chọn giờ'}
 function openPin(){if(st.pin)pd=JSON.parse(JSON.stringify(st.pin));if(pd.b>=0)$('#pSelf').open=true;renderPin();openDr('pin');chime(1318.5)}
 $('#pin').onclick=openPin;
@@ -970,6 +973,7 @@ $('#z3d').onclick=function(e){e.stopPropagation();st.z3=!st.z3;st.h3=null;if(win
 $('#stage').addEventListener('click',function(e){if(e.target.classList&&e.target.classList.contains('c3d'))return;if(st.hs>=0&&!e.target.closest('.pop,.hsd')){st.hs=-1;drawHs()}});
 window.addEventListener('resize',function(){if(st.scr===1)drawHs()});
 function pickLook(i){st.look=i;st.hs=-1;st.h3=null;st.view='hand';chime(i<0?1046.5:1396.9);renderRoom()}
+var LIVE=false;
 var QUICK={n:'Hẹn trước, chọn mẫu sau',m:90,p:180};
 var CODES={BANMOI:{n:'Khách mới',v:50},BAVA10:{n:'Giảm 10%',pc:10},GIFT50:{n:'Thẻ quà 50.000đ',v:50}};
 function disc(p){var c=st.code&&CODES[st.code];if(!c)return 0;return Math.min(p,c.pc?Math.round(p*c.pc/100):c.v)}
@@ -1077,9 +1081,9 @@ function submit(){var md=bkMode();if(md==='late'){pickNear();return}if(md==='slo
   if(!nm){$('#nm').focus();alert0('Bạn cho Bavanail xin tên gọi nhé.');return}
   if(ph.length<9||ph.length>11){$('#ph').focus();alert0('Số điện thoại chưa đúng (9–11 số).');return}
   var T=totals(),pr=T.quick||T.pin?K(T.p)+' – '+K(T.pmax):K(T.p);st.ok=true;st.waited=md==='wait';
-  if(st.waited){$('#okH').innerHTML='Bavanail đã ghi tên bạn <em>vào hàng chờ</em>';$('#okSt').textContent='Trạng thái: đang trong hàng chờ · chưa có lịch';$('#okLine').textContent=nm+' · '+dayName(st.day)+' · khung '+WINS[st.win][0].toLowerCase()+' · ước tính '+pr;
+  if(st.waited){$('#okH').innerHTML='Bavanail đã ghi tên bạn <em>vào hàng chờ</em>';$('#okSt').textContent=LIVE?'Trạng thái: đang trong hàng chờ · chưa có lịch':'Bản thử: mô phỏng vào hàng chờ thành công, chưa tạo lịch hẹn thật';$('#okLine').textContent=nm+' · '+dayName(st.day)+' · khung '+WINS[st.win][0].toLowerCase()+' · ước tính '+pr;
     $('#okNext').textContent='Có ghế trống, Bavanail nhắn Zalo theo thứ tự; bạn có 15 phút để nhận chỗ.';$('#dep').hidden=true}
-  else{$('#okH').innerHTML='Một cuộc hẹn với vẻ đẹp <em>đang chờ bạn</em>';$('#okSt').textContent='Bavanail đã nhận lời hẹn của bạn · lịch chính thức khi Bavanail nhắn Zalo xác nhận';$('#okLine').textContent=nm+' · '+st.slot+', '+dayName(st.day)+' · ước tính '+pr;
+  else{$('#okH').innerHTML='Một cuộc hẹn với vẻ đẹp <em>đang chờ bạn</em>';$('#okSt').textContent=LIVE?'Bavanail đã nhận lời hẹn của bạn · lịch chính thức khi Bavanail nhắn Zalo xác nhận':'Bản thử: mô phỏng gửi yêu cầu thành công, chưa tạo lịch hẹn thật';$('#okLine').textContent=nm+' · '+st.slot+', '+dayName(st.day)+' · ước tính '+pr;
     $('#okNext').textContent='Bước tiếp: Bavanail nhắn Zalo xác nhận, lúc đó lịch mới chính thức.';$('#dep').hidden=false;renderDep()}
   if(!T.quick&&!T.pin){try{localStorage.setItem('bvLast',JSON.stringify({set:st.set,tech:st.tech,add:st.add,look:st.look,nm:nm}))}catch(e){}renderQuick()}
   chime(1975.5);renderBook();renderBar();syncThread();var rb=$('#recapBox');if(rb.scrollIntoView)rb.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
@@ -1091,7 +1095,8 @@ function renderQuick(){var q=$('#quick'),L=lastBk();
     q.onclick=function(){st.quick=true;st.pin=null;st.set=null;st.tech=null;st.add=[false,false];st.look=-1;go(2)}}}
 function syncThread(){var done=[!!st.set||!!st.quick||!!st.pin, st.quick||st.pin?st.scr===2:(st.scr>=1&&!!st.set&&(st.tech!=null||st.scr===2)), st.ok];
   var n=done[0]?(done[1]?(done[2]?3:2):1):0;$('#thread').style.setProperty('--p',Math.min(1,n/2));
-  $$('.st').forEach(function(b,i){b.classList.toggle('here',st.scr===i);b.classList.toggle('done',done[i]);if(st.scr===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')})}
+  var skip=[!!st.quick, !!st.quick||!!(st.pin&&st.pin.b<0), false];
+  $$('.st').forEach(function(b,i){b.classList.toggle('here',st.scr===i);b.classList.toggle('done',done[i]&&!skip[i]);b.classList.toggle('skip',skip[i]&&st.scr!==i);if(skip[i])b.setAttribute('title','Đã bỏ qua');else b.removeAttribute('title');if(st.scr===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')})}
 function go(i,noPush){if(i===1&&st.quick)st.quick=false;if(i===1&&st.pin)st.pin=null;if(i>0&&!st.set&&!st.quick&&!st.pin){st.set=SETS[0].id}
   if(i!==1&&window.BV3D&&BV3D.ready)BV3D.show(false);
   st.scr=i;$$('.scr').forEach(function(s,k){s.classList.toggle('on',k===i);if(k===i)s.scrollTop=0});
