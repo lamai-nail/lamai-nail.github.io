@@ -408,6 +408,10 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
 .mlab{flex-basis:auto;margin:0;font-size:14px}#cnt{font-variant-numeric:tabular-nums;white-space:nowrap}
 .quick{display:block;border:0;background:none;padding:8px 0;margin-top:6px;font-size:14px;text-align:left}.quick span{margin-right:8px}.quick i{margin-left:6px;white-space:nowrap}.quick b{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
 .lbc small{text-transform:none;letter-spacing:.02em}.lbnote{margin-top:8px;font-size:12.5px}
+.okst{display:inline-block;margin:6px 0 4px;padding:6px 12px;border-radius:999px;background:#FFF1EA;border:1px solid var(--gold2);color:var(--ink);font-size:13px;font-weight:500}
+.gifth{margin:18px 0 0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pink)}.gifts{margin-top:10px}
+.how{margin-top:14px}.how summary,.pself summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.how summary{color:#F5E6EC;text-decoration-color:var(--pink)}.pself{margin-top:12px}.pself summary{color:var(--ink2);text-decoration-color:var(--gold)}
 </style>
 <script type="importmap">{"imports":{"three":"./a/3d/three.module.min.js"}}</script>
 </head>
@@ -442,9 +446,9 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
     <div class="wrap atelier">
       <div>
         <p class="eyebrow">The Velvet Atelier</p>
-        <h1>Chạm một thẻ, <em>bướm sẽ dẫn đường</em></h1>
+        <h1>Hôm nay, bạn muốn <em>hoá thành nàng bướm nào?</em></h1>
         <p class="lead">Mỗi bộ móng treo như một món trang sức. Chạm để ướm lên tay, chọn bộ ưng ý rồi phối cùng trang phục.</p>
-        <div class="more cols" id="cols" role="group" aria-label="Bộ sưu tập"><button class="hbtn" id="fitBtn" aria-expanded="false" aria-controls="fitBox">✦ Hợp tay tôi</button></div>
+        <div class="more cols" id="cols" role="group" aria-label="Bộ sưu tập"><button class="hbtn" id="fitBtn" aria-expanded="false" aria-controls="fitBox">✦ Dành riêng cho bạn</button></div>
         <div class="fit" id="fitBox" hidden>
           <p class="fqh">Tông da của bạn</p><div class="more" role="group" aria-label="Tông da" id="fitT"></div>
           <p class="fqh">Ngón tay</p><div class="more" role="group" aria-label="Ngón tay" id="fitF"></div>
@@ -462,7 +466,7 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
       </div>
       <div class="under">
         <p class="mlab" id="mlab"></p>
-        <button class="ghost" id="pin" aria-expanded="false" aria-controls="pinD">＋ Không thấy mẫu ưng? Gửi ảnh riêng để ước giá</button>
+        <button class="ghost" id="pin" aria-expanded="false" aria-controls="pinD">＋ Đã có bộ móng trong mơ? Gửi ảnh, thợ báo giá</button>
       </div>
       <div class="lb">
         <p class="eyebrow">Lookbook</p>
@@ -498,7 +502,7 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
       <div class="box">
         <p class="eyebrow">Chọn giờ</p>
         <h2>Bavanail giữ ghế cho <em>bạn</em></h2>
-        <p class="note" id="bkNote">Bản thử: lịch 4 thợ là giả lập. Bản chạy thật lấy từ tiến độ thợ; giờ kín tự ẩn, không chọn thợ.</p>
+        <p class="note" id="bkNote">Bản thử: lịch 4 thợ là giả lập. Bản thật cập nhật theo tiến độ của thợ, giờ nào kín sẽ tự ẩn để bạn chỉ thấy giờ còn trống.</p>
         <div class="sec"><p>Ngày</p><div class="days" id="days" role="group" aria-label="Chọn ngày"></div><div class="prog" id="prog" hidden></div></div>
         <div class="sec"><p>Giờ <span id="slotCnt"></span></p><div class="slots" id="slots" role="group" aria-label="Chọn giờ"></div><div class="wait" id="wait" hidden></div></div>
         <div class="field"><label for="nm">Tên gọi</label><input id="nm" autocomplete="nickname" placeholder="Ví dụ: Mai Anh"></div>
@@ -506,12 +510,12 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
       </div>
       <div class="box" id="recapBox">
         <ol class="stt" id="stt" aria-label="Trạng thái phiếu"><li>Ước giá</li><li>Yêu cầu đã gửi</li><li>Lịch đã xác nhận</li></ol>
-        <p class="eyebrow" style="margin-bottom:10px">Phiếu ước tính</p>
+        <p class="eyebrow" style="margin-bottom:10px">Chi phí dự kiến</p>
         <div class="recap"><img id="rcImg" alt=""><div><b id="rcName"></b><span class="meta" id="rcLine"></span></div></div>
         <div class="rows num" id="rcRows"></div>
         <details class="code" id="codeBox"><summary id="codeSum">Có mã giảm / thẻ quà?</summary><div class="offers" id="offers" role="group" aria-label="Ưu đãi bạn dùng được"></div><div class="codeRow"><input id="codeIn" aria-label="Mã giảm hoặc thẻ quà" placeholder="Nhập mã" autocomplete="off" autocapitalize="characters"><button id="codeBtn">Áp dụng</button></div><p class="note" id="codeMsg">Thẻ quà hoặc mã khác thì nhập vào ô trên (bản thử: GIFT50). 1 mã mỗi phiếu, không cộng dồn.</p></details>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px"><span class="note" style="margin:0" id="estNote">Giá ước tính: thợ chốt lại trước khi làm, không tự tăng khi chưa hỏi bạn.</span><button class="edit" id="edit">Sửa lựa chọn</button></div>
-        <div class="ok" id="ok"><img src="a/buom.svg" alt=""><h2 id="okH">Đã gửi yêu cầu <em>giữ chỗ</em></h2><p class="note" id="okLine"></p><p class="note" id="okNext"></p><p class="note">Đây là bản thử: không có phiếu nào được gửi đi.</p><div class="dep" id="dep"><label for="depSel">Bạn đi từ quận nào? Bavanail tính giờ nên xuất phát</label><select id="depSel"></select><p class="note" id="depOut"></p></div><button class="cocinv" id="cocInv">Mở Ổ kén: xem hành trình hoá bướm của bạn ✦</button></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px"><span class="note" style="margin:0" id="estNote">Chi phí dự kiến: thợ cùng bạn xác nhận lại trước khi bắt đầu, mọi thay đổi đều hỏi bạn trước.</span><button class="edit" id="edit">Sửa lựa chọn</button></div>
+        <div class="ok" id="ok"><img src="a/buom.svg" alt=""><h2 id="okH">Một cuộc hẹn với vẻ đẹp <em>đang chờ bạn</em></h2><p class="okst" id="okSt" role="status"></p><p class="note" id="okLine"></p><p class="note" id="okNext"></p><p class="note">Đây là bản thử: không có phiếu nào được gửi đi.</p><div class="dep" id="dep"><label for="depSel">Bạn đi từ quận nào? Bavanail tính giờ nên xuất phát</label><select id="depSel"></select><p class="note" id="depOut"></p></div><button class="cocinv" id="cocInv">Mở Ổ kén: xem hành trình hoá bướm của bạn ✦</button></div>
       </div>
     </div>
   </section>
@@ -533,11 +537,18 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
       <button role="tab" id="ct2" aria-controls="cp2" aria-selected="false" tabindex="-1">Ví Kén</button>
     </div>
     <div class="tpane" id="cp0" role="tabpanel" aria-labelledby="ct0">
+    <p class="gifth">Quà đang chờ bạn</p>
+    <div class="layers gifts">
+      <div class="layer"><i>✦</i><div><b>Quà chào mừng 50.000đ</b><span>Dành cho lần đầu bạn ghé Bavanail, chọn trong mục ưu đãi khi đặt lịch.</span></div></div>
+      <div class="layer"><i>❀</i><div><b>Thẻ Look sau mỗi lần làm</b><span>Một tấm thiệp mang tên bộ móng của bạn, xinh như nhãn nước hoa, để khoe lên Story.</span></div></div>
+      <div class="layer"><i>◈</i><div><b>Hộp ngọc &amp; JackPot</b><span>Lượt nào cũng có quà, có những món chỉ dành cho nàng đã hoá bướm.</span></div></div>
+    </div>
+    <p class="gifth">Hành trình của bạn</p>
     <div class="tiers"><div class="tier on"><i></i>Trứng Ngọc</div><div class="tier"><i></i>Sâu Non</div><div class="tier"><i></i>Kén Lụa</div><div class="tier"><i></i>Bướm</div></div>
     <p class="near">Chỉ còn 1 lần làm móng để nở thành Sâu Non ✦</p>
-    <div class="layers">
-      <div class="layer"><i>❋</i><div><b>Sợi Tơ Titan</b><span>Chỉ đến từ lần làm móng thật và gói nạp Ví Kén. Tơ quyết định hạng của bạn và đổi được vé JackPot.</span></div></div>
-    </div>
+    <details class="how"><summary>Cách hoá bướm</summary><div class="layers">
+      <div class="layer"><i>❋</i><div><b>Sợi Tơ Titan</b><span>Mỗi lần làm móng và mỗi gói Ví Kén dệt thêm tơ cho bạn. Tơ đưa bạn lên hạng mới và đổi thành vé JackPot.</span></div></div>
+    </div></details>
     <div class="lookcard" id="lookcard" aria-label="Thẻ Look 9:16">
       <img class="ph" id="lcImg" alt="">
       <div class="info"><div class="nm" id="lcName"></div><div class="sw" id="lcSw"></div><div class="mt" id="lcMeta"></div><div class="sig"><span>BAVANAIL · HÀ NỘI</span><img src="a/buom.svg" alt=""></div></div>
@@ -554,7 +565,7 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
     </div>
     <div class="tpane" id="cp2" role="tabpanel" aria-labelledby="ct2" hidden>
       <div class="layers">
-        <div class="layer"><i>◈</i><div><b>Ví Kén</b><span>Nạp trước dùng sau, kèm đặc quyền riêng và tơ cộng nhanh hơn. Không giảm giá dịch vụ, chỉ thêm quà.</span></div></div>
+        <div class="layer"><i>◈</i><div><b>Ví Kén</b><span>Nạp trước dùng sau, mỗi gói đi kèm quà, đặc quyền riêng và tơ dệt nhanh hơn.</span></div></div>
       </div>
       <p class="soon">Bản thử: chưa nạp được. Các gói Ví Kén sẽ hiện ở đây khi tiệm chốt bảng gói.</p>
     </div>
@@ -565,15 +576,17 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
   <div class="sheet">
     <button class="x" id="pinX" aria-label="Đóng ước giá">×</button>
     <p class="eyebrow">Mẫu riêng của bạn</p>
-    <h2 id="pinT">Ước giá <em>từ ảnh mẫu</em></h2>
-    <p class="note">Có ảnh từ Pinterest, Instagram…? Chọn những gì bạn thấy trên móng, giá tính theo bảng giá công khai.</p>
-    <label class="up"><input type="file" accept="image/*" id="pinFile"><span id="pinUpTx">＋ Thêm ảnh mẫu <small>(tuỳ chọn)</small></span><img id="pinPrev" alt="Ảnh mẫu bạn chọn" hidden></label>
+    <h2 id="pinT">Bộ móng <em>trong mơ của bạn</em></h2>
+    <p class="note">Ảnh từ Pinterest, Instagram hay ảnh bạn tự chụp đều được. Gửi ảnh là đủ, thợ xem và báo giá cho bạn.</p>
+    <label class="up"><input type="file" accept="image/*" id="pinFile"><span id="pinUpTx">＋ Thêm ảnh mẫu</span><img id="pinPrev" alt="Ảnh mẫu bạn chọn" hidden></label>
+    <details class="pself" id="pSelf"><summary>Muốn biết trước khoảng giá? Tự chọn nền, chi tiết, độ dài</summary>
     <p class="fqh">1 · Nền móng</p><div class="opts" id="pBase" role="group" aria-label="Nền móng"></div>
     <p class="fqh">2 · Chi tiết trên móng <small>(chọn nhiều, có thể bỏ qua)</small></p><div class="opts" id="pDet" role="group" aria-label="Chi tiết"></div>
     <p class="fqh">3 · Độ dài</p><div class="opts" id="pLen" role="group" aria-label="Độ dài"></div>
+    </details>
     <div class="pest" id="pEst" aria-live="polite"></div>
-    <button class="cta" id="pinGo" disabled>Chọn nền móng để xem giá</button>
-    <p class="note">Thợ xem ảnh và móng thật, chốt giá trước khi làm; không vượt mức cao của khoảng giá khi chưa hỏi bạn.</p>
+    <button class="cta" id="pinGo" disabled>Thêm ảnh mẫu để gửi thợ</button>
+    <p class="note">Thợ xem ảnh và móng thật, cùng bạn xác nhận chi phí trước khi làm; mọi thay đổi đều hỏi bạn trước.</p>
   </div>
 </div>
 <div id="menu" role="dialog" aria-modal="true" aria-labelledby="menuT">
@@ -596,7 +609,7 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
     <div class="tpane" id="mp0" role="tabpanel" aria-labelledby="mt0">
       <div class="pcat" id="pcat" role="group" aria-label="Nhóm dịch vụ"></div>
       <table class="ptab num" id="ptab"></table>
-      <p class="pnote" data-t="pnote">Giá tham khảo của bản thử, áp dụng cho bộ 10 móng. Giá công khai, không mặc cả; thợ xem móng thật và chốt giá trước khi làm.</p>
+      <p class="pnote" data-t="pnote">Giá tham khảo của bản thử, áp dụng cho bộ 10 móng. Minh bạch từng mức giá; thợ xem móng thật và cùng bạn xác nhận trước khi làm.</p>
     </div>
     <div class="tpane" id="mp1" role="tabpanel" aria-labelledby="mt1" hidden>
       <label class="fq"><span class="sr" data-t="ask">Hỏi nhanh</span><input type="search" id="fqIn" maxlength="80" autocomplete="off" placeholder="Gõ câu hỏi, ví dụ: cọc, huỷ lịch, mẫu riêng"></label>
@@ -605,19 +618,19 @@ h1 em,h2 em{font-style:italic;color:var(--gold)}
     <div class="tpane about" id="mp2" role="tabpanel" aria-labelledby="mt2" hidden>
       <h3>Bavanail · Bạn và Nail</h3>
       <p>Một nail atelier nhỏ ở Hà Nội. Bước vào Bavanail giống như về nhà một người bạn có gu: sang, yên tĩnh, và bạn là nhân vật chính.</p>
-      <p>Câu chuyện của tiệm: nàng công chúa mời người bạn vào lâu đài của mình, giải thích từng thứ để bạn không thấy xa lạ. Lâu đài có luật, nhưng luật mềm; chỉ những gì liên quan đến an toàn, vệ sinh, giá và thông tin của bạn là luôn chặt.</p>
+      <p>Câu chuyện của tiệm: nàng công chúa mời người bạn vào lâu đài của mình, giải thích từng thứ để bạn không thấy xa lạ. Lâu đài có luật, nhưng luật mềm như một lời mời; chỉ an toàn, vệ sinh và thông tin của bạn là luôn được giữ gìn cẩn trọng.</p>
       <p>Con bướm là lời hứa: từ kén đến bướm cần kiên nhẫn. Với bạn, đó là hành trình tìm ra bộ móng của riêng mình; với thợ, là con đường từ học việc thành nghệ nhân.</p>
       <div class="vals">
-        <div><b>Giá công khai, không mặc cả</b>Phiếu ước tính trước khi làm, thợ chốt giá với bạn trước khi bắt đầu.</div>
-        <div><b>Thợ nào cũng như thợ quen</b>Hồ sơ móng của bạn được lưu; mọi thợ làm theo cùng một chuẩn.</div>
-        <div><b>Ảnh thật, không ảnh mạng</b>Ảnh mẫu hiện là ảnh mô phỏng; ảnh thành phẩm thật cập nhật sau khai trương.</div>
+        <div><b>Minh bạch từng mức giá</b>Bạn biết chi phí dự kiến trước khi đến; thợ cùng bạn xác nhận lại trước khi bắt đầu.</div>
+        <div><b>Luôn thấu hiểu đôi tay bạn</b>Hồ sơ móng của bạn được lưu lại, để lần nào đến Bavanail cũng như gặp lại người quen.</div>
+        <div><b>Ảnh thật từ chính tiệm</b>Ảnh mẫu hiện là ảnh mô phỏng; ảnh thành phẩm thật cập nhật sau khai trương.</div>
       </div>
       <h3>Chính sách</h3>
       <p class="draft">Bản dự thảo của bản thử: chủ tiệm duyệt và công bố chính thức trước ngày khai trương.</p>
       <div class="pol">
-        <details><summary>Đặt lịch, đến trễ, huỷ lịch</summary><ul><li>Lịch được giữ tối đa 15 phút; trễ hơn, Bavanail xếp bạn vào khung trống gần nhất.</li><li>Đổi hoặc huỷ: nhắn Zalo trước giờ hẹn để Bavanail mời khách trong hàng chờ.</li><li>Lịch thường không cần cọc. Mẫu cầu kỳ có thể giữ chỗ bằng cọc nhỏ, trừ vào hoá đơn.</li><li>Không đến mà không báo 2 lần: lần sau cần cọc 100.000đ khi đặt (trừ vào hoá đơn).</li></ul></details>
-        <details><summary>Giá và thanh toán</summary><ul><li>Giá công khai trong Bảng giá, áp dụng cho bộ 10 móng; không mặc cả.</li><li>Giá trên web là ước tính; thợ xem móng thật và chốt giá trước khi làm, không tăng giá khi chưa hỏi bạn.</li><li>Thanh toán tiền mặt, chuyển khoản hoặc QR. Hoá đơn theo quy định, xuất hoá đơn khi bạn yêu cầu.</li></ul></details>
-        <details><summary>Ưu đãi và mã giảm</summary><ul><li>Mỗi phiếu dùng 1 mã, không cộng dồn; tổng giảm trên một hoá đơn không quá 30%.</li><li>Bavanail chỉ giảm theo khuyến mãi đã công bố, khi tiệm có sự cố trong lúc làm, hoặc voucher bảo hành.</li></ul></details>
+        <details><summary>Đặt lịch, đến trễ, huỷ lịch</summary><ul><li>Lịch được giữ tối đa 15 phút; trễ hơn, Bavanail xếp bạn vào khung trống gần nhất.</li><li>Đổi hoặc huỷ: nhắn Zalo trước giờ hẹn để Bavanail mời khách trong hàng chờ.</li><li>Lịch thường không cần cọc. Mẫu cầu kỳ có thể giữ chỗ bằng cọc nhỏ, trừ vào hoá đơn.</li><li>Nếu lỡ hẹn mà chưa kịp báo, những lần sau Bavanail có thể nhờ bạn giữ chỗ bằng một khoản cọc nhỏ, được trừ vào hoá đơn.</li></ul></details>
+        <details><summary>Giá và thanh toán</summary><ul><li>Mọi mức giá đều minh bạch trong Bảng giá, áp dụng cho bộ 10 móng.</li><li>Giá trên web là chi phí dự kiến; thợ xem móng thật và cùng bạn xác nhận trước khi làm, mọi thay đổi đều hỏi bạn trước.</li><li>Thanh toán tiền mặt, chuyển khoản hoặc QR. Hoá đơn theo quy định, xuất hoá đơn khi bạn yêu cầu.</li></ul></details>
+        <details><summary>Ưu đãi và mã giảm</summary><ul><li>Mỗi phiếu áp dụng một mã ưu đãi; ưu đãi trên một hoá đơn thường tối đa 30%.</li><li>Ưu đãi đến từ các chương trình Bavanail công bố, quà trong Ổ kén và những món quà nhỏ tiệm dành riêng cho bạn. Nếu buổi làm có điều gì chưa trọn vẹn từ phía tiệm, Bavanail luôn có cách bù đắp.</li></ul></details>
         <details><summary>Bảo hành</summary><ul><li>Lỗi do tiệm (bong, gãy, sai mẫu đã chốt): Bavanail sửa lại cho bạn.</li><li>Đã sửa mà bạn vẫn chưa ưng: Bavanail gửi voucher bảo hành.</li><li>Thời hạn và điều kiện cụ thể: chủ tiệm chốt trước khai trương.</li></ul></details>
         <details><summary>Thông tin cá nhân và ảnh của bạn</summary><ul><li>Tên và số điện thoại chỉ dùng để hẹn lịch, nhắn Zalo xác nhận và nhắc lịch; không bán, không chia sẻ cho bên khác.</li><li>Ảnh tay của bạn chỉ được đăng khi bạn đồng ý; bạn có thể yêu cầu gỡ bất cứ lúc nào.</li><li>Xử lý dữ liệu cá nhân theo Nghị định 13/2023/NĐ-CP. Ở bản thử này, không có dữ liệu nào được gửi đi.</li></ul></details>
         <details><summary>Vệ sinh và an toàn</summary><ul><li>Dụng cụ kim loại được làm sạch, khử khuẩn sau mỗi khách; dũa, bông, khăn dùng một lần hoặc giặt riêng.</li><li>Báo thợ nếu da tay đang tổn thương hoặc bạn từng dị ứng gel; thợ có thể đổi cách làm hoặc hẹn lại.</li></ul></details>
@@ -828,7 +841,7 @@ function renderCards(){
     b.onclick=function(){tapCard(b,s)};box.appendChild(b)});
   var d=$('#dots');d.innerHTML=st.shown.map(function(_,k){return '<i'+(k===0?' class="on"':'')+'></i>'}).join('');
   if($('#emPin'))$('#emPin').onclick=function(){openPin()};
-  var cl=$('#cols'),fbn=$('#fitBtn');cl.innerHTML='';if(fbn)cl.appendChild(fbn);(st.fit&&st.fit.f?[{k:'fit',n:'Hợp tay bạn · '+fitIdx(st.fit).length,v:1}]:[]).concat(COLS).forEach(function(o){var c=document.createElement('button');c.className='chip';c.innerHTML=o.n+(o.nw?'<span class="nw">MỚI</span>':'');if(o.v)c.classList.add('vfit');c.setAttribute('aria-pressed',String(st.col===o.k));
+  var cl=$('#cols'),fbn=$('#fitBtn');cl.innerHTML='';if(fbn)cl.appendChild(fbn);(st.fit&&st.fit.f?[{k:'fit',n:'Dành riêng cho bạn · '+fitIdx(st.fit).length,v:1}]:[]).concat(COLS).forEach(function(o){var c=document.createElement('button');c.className='chip';c.innerHTML=o.n+(o.nw?'<span class="nw">MỚI</span>':'');if(o.v)c.classList.add('vfit');c.setAttribute('aria-pressed',String(st.col===o.k));
     c.onclick=function(){if(st.col===o.k)return;st.col=o.k;st.shown=o.k==='fit'?fitIdx(st.fit):colIdx(o.k);chime(1174.7);var cs=$('#cards'),sb=cs.style.scrollBehavior;cs.style.scrollBehavior='auto';renderCards();cs.scrollLeft=0;cs.style.scrollBehavior=sb;navUi()};cl.appendChild(c)});
   var cn=COLS.find(function(x){return x.k===st.col});
   if(st.col==='done')$('#mlab').innerHTML='<b>Tiệm đã làm</b> · ảnh khách thật, có sau khai trương';
@@ -861,7 +874,7 @@ function renderFit(){var f=st.fit||{};
   $('#fitF').innerHTML=FINGERS.map(function(g){return '<button class="chip" data-f="'+g.k+'" aria-pressed="'+(f.f===g.k)+'">'+g.n+'</button>'}).join('');
   $$('#fitT .chip').forEach(function(b){b.onclick=function(){st.fit=Object.assign({},st.fit,{t:b.dataset.t});fitApply()}});
   $$('#fitF .chip').forEach(function(b){b.onclick=function(){st.fit=Object.assign({},st.fit,{f:b.dataset.f});fitApply()}});
-  var fb=$('#fitBtn');fb.textContent=f.t&&f.f?'✦':'✦ Hợp tay tôi';fb.classList.toggle('ico',!!(f.t&&f.f));fb.setAttribute('aria-label',f.t&&f.f?'Hợp tay tôi: '+fitTxt(f)+' · chạm để đổi':'Hợp tay tôi: lọc mẫu theo tông da và ngón tay')}
+  var fb=$('#fitBtn');fb.textContent=f.t&&f.f?'✦':'✦ Dành riêng cho bạn';fb.classList.toggle('ico',!!(f.t&&f.f));fb.setAttribute('aria-label',f.t&&f.f?'Dành riêng cho bạn: '+fitTxt(f)+' · chạm để đổi':'Dành riêng cho bạn: gợi ý mẫu theo tông da và ngón tay')}
 function fitApply(){var f=st.fit;chime(1174.7);if(!(f&&f.t&&f.f)){renderFit();return}
   try{localStorage.setItem('bvFit',JSON.stringify(f))}catch(e){}
   st.col='fit';st.shown=fitIdx(f);var cs=$('#cards'),sb=cs.style.scrollBehavior;cs.style.scrollBehavior='auto';renderCards();cs.scrollLeft=0;cs.style.scrollBehavior=sb;navUi();
@@ -881,12 +894,12 @@ function renderPin(){
   $$('#pDet .opt').forEach(function(b){b.onclick=function(){var i=+b.dataset.i,k=pd.d.indexOf(i);if(k>=0)pd.d.splice(k,1);else{pd.d.push(i);if(i<2){var o=1-i,ko=pd.d.indexOf(o);if(ko>=0)pd.d.splice(ko,1)}}pd.d.sort();chime(1244.5);renderPin()}});
   $$('#pLen .opt').forEach(function(b){b.onclick=function(){pd.t=+b.dataset.i;chime(1174.7);renderPin()}});
   var P=pinCalc(pd),e=$('#pEst'),g=$('#pinGo');
-  if(!P){e.innerHTML='<div><span>Chọn nền móng trong ảnh để xem khoảng giá.</span></div>';g.disabled=true;g.textContent='Chọn nền móng để xem giá';return}
+  if(!P){e.innerHTML=pd.img?'<div><span>Thợ xem ảnh và báo giá cho bạn qua Zalo.</span></div>':'';g.disabled=!pd.img;g.textContent=pd.img?'Gửi ảnh, chọn giờ →':'Thêm ảnh mẫu để gửi thợ';return}
   e.innerHTML=pinRows(P)+'<div class="tot"><span>Khoảng giá · '+HM(P.m)+'</span><span>'+K(P.p)+' – '+K(P.hi)+'</span></div>';g.disabled=false;g.textContent='Chốt ước tính → Chọn giờ'}
-function openPin(){if(st.pin)pd=JSON.parse(JSON.stringify(st.pin));renderPin();openDr('pin');chime(1318.5)}
+function openPin(){if(st.pin)pd=JSON.parse(JSON.stringify(st.pin));if(pd.b>=0)$('#pSelf').open=true;renderPin();openDr('pin');chime(1318.5)}
 $('#pin').onclick=openPin;
-$('#pinFile').onchange=function(){var f=this.files&&this.files[0];if(!f||!/^image\//.test(f.type))return;try{if(pd.img)URL.revokeObjectURL(pd.img)}catch(e){}pd.img=URL.createObjectURL(f);var im=$('#pinPrev');im.src=pd.img;im.hidden=false;$('#pinUpTx').innerHTML='Đã thêm ảnh mẫu <small>(bản thử: ảnh chỉ nằm trên máy bạn)</small>'};
-$('#pinGo').onclick=function(){if(pd.b<0)return;st.pin=JSON.parse(JSON.stringify(pd));st.quick=false;st.set=null;st.tech=null;st.look=-1;st.add=[false,false];closeDr('pin',true);go(2)};
+$('#pinFile').onchange=function(){var f=this.files&&this.files[0];if(!f||!/^image\//.test(f.type))return;try{if(pd.img)URL.revokeObjectURL(pd.img)}catch(e){}pd.img=URL.createObjectURL(f);var im=$('#pinPrev');im.src=pd.img;im.hidden=false;$('#pinUpTx').innerHTML='Đã thêm ảnh mẫu · chạm để đổi <small>(bản thử: ảnh chỉ nằm trên máy bạn)</small>';renderPin()};
+$('#pinGo').onclick=function(){if(pd.b<0&&!pd.img)return;st.pin=JSON.parse(JSON.stringify(pd));st.quick=false;st.set=null;st.tech=null;st.look=-1;st.add=[false,false];closeDr('pin',true);go(2)};
 $('#pinX').onclick=function(){closeDr('pin')};$('#pinVeil').onclick=function(){closeDr('pin')};
 function alert0(t){var n=$('#toast');if(!n){n=document.createElement('div');n.id='toast';n.setAttribute('role','status');n.style.cssText='position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;max-width:min(92vw,460px);padding:12px 16px;border-radius:14px;background:#2B1626;color:#fff;font-size:13px;box-shadow:0 10px 30px rgba(0,0,0,.25)';document.body.appendChild(n)}n.textContent=t;n.style.display='block';clearTimeout(n._t);n._t=setTimeout(function(){n.style.display='none'},4200)}
 function choose(s){st.quick=false;st.pin=null;if(st.set!==s.id){st.add=[false,false]}st.set=s.id;st.tech=null;st.look=-1;st.hs=-1;st.h3=null;st.view='hand';go(1)}
@@ -957,7 +970,9 @@ function pickLook(i){st.look=i;st.hs=-1;st.h3=null;st.view='hand';chime(i<0?1046
 var QUICK={n:'Giữ ghế, chọn mẫu sau',m:90,p:180};
 var CODES={BANMOI:{n:'Khách mới',v:50},BAVA10:{n:'Giảm 10%',pc:10},GIFT50:{n:'Thẻ quà 50.000đ',v:50}};
 function disc(p){var c=st.code&&CODES[st.code];if(!c)return 0;return Math.min(p,c.pc?Math.round(p*c.pc/100):c.v)}
-function totals(){var d;if(st.pin){var P=pinCalc(st.pin);d=disc(P.p);return {pin:1,P:P,s:null,t:P.t,ad:[],p0:P.p,d:d,p:P.p-d,pmax:P.hi-d,m:P.m}}
+var pbMin=Math.min.apply(null,PB.map(function(x){return x.p}));
+function totals(){var d;if(st.pin&&st.pin.b<0){d=disc(pbMin);return {pin:1,photo:1,P:null,s:null,t:{n:'Thợ báo giá theo ảnh',p:0},ad:[],p0:pbMin,d:d,p:pbMin-d,pmax:setMax-d,m:120}}
+  if(st.pin){var P=pinCalc(st.pin);d=disc(P.p);return {pin:1,P:P,s:null,t:P.t,ad:[],p0:P.p,d:d,p:P.p-d,pmax:P.hi-d,m:P.m}}
   if(st.quick){d=disc(QUICK.p);return {quick:1,s:null,t:{n:'Chọn mẫu sau',p:0},ad:[],p0:QUICK.p,d:d,p:QUICK.p-d,pmax:setMax-d,m:QUICK.m}}
   var s=cur();if(!s)return null;var t=TECH[techOf(s)],ad=ADD.filter(function(a,i){return st.add[i]}),ap=ad.reduce(function(n,a){return n+a.p},0),am=ad.reduce(function(n,a){return n+a.m},0),p0=s.p+t.p+ap;d=disc(p0);return {s:s,t:t,ad:ad,p0:p0,d:d,p:p0-d,m:s.m+t.m+am}}
 function renderBar(){var bar=$('#bar'),T=totals(),bk=$('#barBack');bk.hidden=!(st.scr>0);bk.onclick=function(){go(st.scr===2&&(st.quick||st.pin)?0:st.scr-1)};
@@ -1021,6 +1036,9 @@ function renderBook(){var s=cur(),T=totals();if(!T)return;
   if(T.quick){$('#rcImg').src='a/buom.svg';$('#rcImg').alt='';$('#rcName').textContent=QUICK.n;$('#rcLine').textContent='Giữ '+HM(QUICK.m)+' · chọn mẫu trong Tủ móng hoặc tại tiệm';
     $('#rcRows').innerHTML='<div><span>Sơn gel trơn (thấp nhất)</span><span>'+K(QUICK.p)+'</span></div><div><span>Nếu chọn mẫu Tủ móng</span><span>tới '+K(setMax)+'</span></div>'+(T.d?'<div class="dsc"><span>Mã '+st.code+'</span><span>−'+K(T.d)+'</span></div>':'')+'<div class="tot"><span>Ước tính</span><span>'+K(T.p)+' – '+K(T.pmax)+'</span></div>';
     $('#edit').textContent='Chọn mẫu ngay'}
+  else if(T.photo){$('#rcImg').src=st.pin.img||'a/buom.svg';$('#rcImg').alt=st.pin.img?'Ảnh mẫu của bạn':'';$('#rcName').textContent='Bộ móng trong mơ của bạn';$('#rcLine').textContent='Thợ xem ảnh và báo giá · giữ '+HM(T.m);
+    $('#rcRows').innerHTML='<div><span>Theo ảnh mẫu của bạn</span><span>thợ báo giá</span></div>'+(T.d?'<div class="dsc"><span>Mã '+st.code+' · '+CODES[st.code].n+'</span><span>−'+K(T.d)+'</span></div>':'')+'<div class="tot"><span>Tham khảo</span><span>'+K(T.p)+' – '+K(T.pmax)+'</span></div>';
+    $('#edit').textContent='Đổi ảnh mẫu'}
   else if(T.pin){$('#rcImg').src=st.pin.img||'a/buom.svg';$('#rcImg').alt=st.pin.img?'Ảnh mẫu của bạn':'';$('#rcName').textContent='Mẫu riêng của bạn';$('#rcLine').textContent='Nền '+T.P.b.n.toLowerCase()+' · '+T.t.n+' · '+HM(T.m);
     $('#rcRows').innerHTML=pinRows(T.P,T.d?'<div class="dsc"><span>Mã '+st.code+' · '+CODES[st.code].n+'</span><span>−'+K(T.d)+'</span></div>':'')+'<div class="tot"><span>Ước tính</span><span>'+K(T.p)+' – '+K(T.pmax)+'</span></div>';
     $('#edit').textContent='Sửa ước giá'}
@@ -1056,9 +1074,9 @@ function submit(){var md=bkMode();if(md==='late'){pickNear();return}if(md==='slo
   if(!nm){$('#nm').focus();alert0('Bạn cho Bavanail xin tên gọi nhé.');return}
   if(ph.length<9||ph.length>11){$('#ph').focus();alert0('Số điện thoại chưa đúng (9–11 số).');return}
   var T=totals(),pr=T.quick||T.pin?K(T.p)+' – '+K(T.pmax):K(T.p);st.ok=true;st.waited=md==='wait';
-  if(st.waited){$('#okH').innerHTML='Đã vào <em>hàng chờ</em>';$('#okLine').textContent=nm+' · '+dayName(st.day)+' · khung '+WINS[st.win][0].toLowerCase()+' · ước tính '+pr;
+  if(st.waited){$('#okH').innerHTML='Bavanail đã ghi tên bạn <em>vào hàng chờ</em>';$('#okSt').textContent='Trạng thái: đang trong hàng chờ · chưa có lịch';$('#okLine').textContent=nm+' · '+dayName(st.day)+' · khung '+WINS[st.win][0].toLowerCase()+' · ước tính '+pr;
     $('#okNext').textContent='Có ghế trống, Bavanail nhắn Zalo theo thứ tự; bạn có 15 phút để nhận chỗ.';$('#dep').hidden=true}
-  else{$('#okH').innerHTML='Đã gửi yêu cầu <em>giữ chỗ</em>';$('#okLine').textContent=nm+' · '+st.slot+', '+dayName(st.day)+' · ước tính '+pr;
+  else{$('#okH').innerHTML='Một cuộc hẹn với vẻ đẹp <em>đang chờ bạn</em>';$('#okSt').textContent='Trạng thái: đã gửi yêu cầu giữ chỗ · chờ Bavanail xác nhận qua Zalo';$('#okLine').textContent=nm+' · '+st.slot+', '+dayName(st.day)+' · ước tính '+pr;
     $('#okNext').textContent='Bước tiếp: Bavanail nhắn Zalo xác nhận, lúc đó lịch mới chính thức.';$('#dep').hidden=false;renderDep()}
   if(!T.quick&&!T.pin){try{localStorage.setItem('bvLast',JSON.stringify({set:st.set,tech:st.tech,add:st.add,look:st.look,nm:nm}))}catch(e){}renderQuick()}
   chime(1975.5);renderBook();renderBar();syncThread();var rb=$('#recapBox');if(rb.scrollIntoView)rb.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
@@ -1066,7 +1084,7 @@ function lastBk(){try{var L=JSON.parse(localStorage.getItem('bvLast')||'null');i
 function renderQuick(){var q=$('#quick'),L=lastBk();
   if(L){var s=SETS.find(function(x){return x.id===L.set});q.innerHTML='<span>Đặt như lần trước</span><b>'+s.n+' · '+TECH[L.tech==null?s.rec:L.tech].n+'</b><i>→</i>';
     q.onclick=function(){st.quick=false;st.pin=null;st.set=s.id;st.tech=L.tech;st.add=(L.add||[false,false]).slice(0,2);st.look=L.look==null?-1:L.look;st.hs=-1;go(2);if(L.nm&&!$('#nm').value)$('#nm').value=L.nm}}
-  else{q.innerHTML='<span>Chưa chọn được mẫu?</span><b>Giữ giờ trước, chọn mẫu sau</b><i>→</i>';
+  else{q.innerHTML='<span>Đã biết mình muốn gì?</span><b>Đặt lịch ngay, chọn mẫu sau</b><i>→</i>';
     q.onclick=function(){st.quick=true;st.pin=null;st.set=null;st.tech=null;st.add=[false,false];st.look=-1;go(2)}}}
 function syncThread(){var done=[!!st.set||!!st.quick||!!st.pin, st.quick||st.pin?st.scr===2:(st.scr>=1&&!!st.set&&(st.tech!=null||st.scr===2)), st.ok];
   var n=done[0]?(done[1]?(done[2]?3:2):1):0;$('#thread').style.setProperty('--p',Math.min(1,n/2));
@@ -1117,19 +1135,19 @@ var FAQS=[
  ['Tôi có thể mang ảnh mẫu từ Pinterest đến không?','Có. Thợ xem mẫu, điều chỉnh cho hợp dáng tay của bạn và báo giá trước khi bắt đầu.','Can I bring a Pinterest photo?','Yes. Our artist reviews it, adapts it to your hands and quotes the price before starting.'],
  ['Có cần đặt cọc không?','Lịch thường không cần cọc. Một số mẫu cầu kỳ giữ chỗ bằng một khoản cọc nhỏ, được trừ vào hoá đơn.','Do I need a deposit?','Regular bookings need no deposit. Some elaborate designs hold your seat with a small deposit, deducted from the bill.'],
  ['Tôi muốn đổi hoặc huỷ lịch?',ZL+' trước giờ hẹn ít nhất 3 tiếng để Bavanail sắp xếp lại cho bạn.','How do I change or cancel?',ZE+' at least 3 hours before your appointment and we will rearrange it.'],
- ['Nếu tôi đến trễ hoặc không đến?','Bavanail giữ lịch tối đa 15 phút. Trễ hơn, Bavanail xếp bạn vào khung trống gần nhất. Không đến mà không báo 2 lần, lần sau cần cọc 100.000đ khi đặt (được trừ vào hoá đơn).','What if I am late or miss it?','We hold your booking for up to 15 minutes. Later than that, we move you to the nearest free slot. After 2 no-shows without notice, the next booking needs a 100.000đ deposit (deducted from the bill).'],
+ ['Nếu tôi đến trễ hoặc không đến?','Bavanail giữ lịch tối đa 15 phút. Trễ hơn, Bavanail xếp bạn vào khung trống gần nhất. Nếu lỡ hẹn mà chưa kịp báo, những lần sau Bavanail có thể nhờ bạn giữ chỗ bằng một khoản cọc nhỏ, được trừ vào hoá đơn.','What if I am late or miss it?','We hold your booking for up to 15 minutes. Later than that, we move you to the nearest free slot. If you miss a visit without a word, we may ask for a small deposit next time, deducted from the bill.'],
  ['Hết khung giờ thì sao?','Bạn vào hàng chờ, chọn ngày, giờ và khoảng giờ có thể lệch. Có khung trống, Bavanail nhắn Zalo theo thứ tự và giữ chỗ 15 phút cho bạn.','What if all slots are full?','Join the waitlist with your day, time and how flexible you are. When a slot opens, we message you on Zalo in order and hold it for 15 minutes.'],
- ['Mã giảm giá dùng thế nào?','Mã từ Hộp ngọc và mã sinh nhật trong Ổ kén được tự áp dụng. Mã khác (bảo hành, thẻ quà) gõ ở dòng "Có mã/thẻ quà?" khi đặt lịch. Mã áp dụng theo điều kiện từng chương trình; tổng giảm trên một hoá đơn không quá 30%.','How do discount codes work?','Codes from your Gem Box and birthday codes in the Cocoon apply automatically. Other codes (warranty, gift cards) go in the "Have a code / gift card?" line when booking. Each code follows its own terms; total discount per bill is capped at 30%.'],
+ ['Mã giảm giá dùng thế nào?','Mã từ Hộp ngọc và mã sinh nhật trong Ổ kén được tự áp dụng. Mã khác (bảo hành, thẻ quà) gõ ở dòng "Có mã/thẻ quà?" khi đặt lịch. Mỗi mã áp dụng theo điều kiện của chương trình đó.','How do discount codes work?','Codes from your Gem Box and birthday codes in the Cocoon apply automatically. Other codes (warranty, gift cards) go in the "Have a code / gift card?" line when booking. Each code follows its own programme terms.'],
  ['Bavanail có làm móng cho các chàng không?','Có. Bavanail có các mẫu cho chàng, móng ngắn, gọn: chăm sóc trong suốt, đen nhám, chrome bạc, xanh rêu.','Do you do nails for men?','Yes. Short, clean sets for men: clear care, matte black, silver chrome, moss green.'],
  ['Thanh toán bằng gì?','Tiền mặt, chuyển khoản hoặc quét mã QR tại tiệm.','How can I pay?','Cash, bank transfer or QR code at the shop.'],
- ['Tôi có mẫu riêng, giá tính thế nào?','Ở Tủ móng, chạm "＋ Không thấy mẫu ưng? Gửi ảnh riêng" ngay dưới hốc thẻ, chọn những gì bạn thấy trên móng (nền, vẽ, đá, charm, nối…) để xem khoảng giá theo bảng giá công khai, rồi chọn giờ luôn. Thợ xem móng thật và chốt giá trước khi làm.','I have my own design. How is it priced?','In the Nail Wardrobe, tap "＋ Ảnh mẫu riêng · ước giá" (own design · estimate), tick what you see on the nails (base, art, stones, charms, extensions…) and get an estimate from the public price list. The artist checks your nails and confirms the price before starting.'],
- ['Tôi có được chọn thợ không?','Bavanail xếp thợ theo tiến độ để bạn được làm sớm nhất. Hồ sơ móng của bạn được lưu lại, nên thợ nào cũng làm đúng ý bạn như với khách quen.','Can I choose my artist?','We assign artists by availability so you are served soonest. Your nail profile is saved, so every artist treats you like a regular.'],
- ['Có mặc cả hoặc giảm giá riêng không?','Giá công khai, không mặc cả. Bavanail chỉ giảm theo khuyến mãi đã công bố, khi tiệm có sự cố trong lúc làm, hoặc voucher bảo hành.','Can I bargain or get a private discount?','Prices are public, no bargaining. We only discount through announced promotions, when the shop causes an issue during service, or with a warranty voucher.'],
+ ['Tôi có mẫu riêng, giá tính thế nào?','Ở Tủ móng, chạm "＋ Đã có bộ móng trong mơ?" ngay dưới hốc thẻ và gửi ảnh mẫu là đủ: thợ xem ảnh rồi báo giá cho bạn, bạn chọn giờ luôn. Muốn biết trước khoảng giá, bạn có thể tự chọn nền, chi tiết và độ dài.','I have my own design. How is it priced?','In the Nail Wardrobe, tap "＋ Dream set?" under the cards and simply send your photo: our artist reviews it and quotes for you, and you can pick a time right away. Curious about the range first? Choose the base, details and length yourself.'],
+ ['Tôi có được chọn thợ không?','Bavanail sắp xếp thợ theo tiến độ để bạn không phải chờ lâu. Hồ sơ móng của bạn được lưu lại, nên dù ai đón bạn, đôi tay bạn vẫn luôn được thấu hiểu như người quen.','Can I choose my artist?','We arrange artists by availability so you never wait long. Your nail profile is saved, so whoever welcomes you already understands your hands like an old friend.'],
+ ['Có ưu đãi riêng cho tôi không?','Mọi mức giá đều minh bạch trong Bảng giá. Ưu đãi đến từ các chương trình Bavanail công bố, quà trong Ổ kén và những món quà nhỏ tiệm dành riêng cho bạn. Nếu buổi làm có điều gì chưa trọn vẹn từ phía tiệm, Bavanail luôn có cách bù đắp.','Is there a special offer for me?','Every price is transparent in our price list. Offers come from announced programmes, gifts in the Cocoon and the little surprises we keep for you. If anything on our side falls short during your visit, we always make it right.'],
  ['Ảnh trên web có phải móng thật của tiệm?','Hiện là ảnh mô phỏng bằng AI để bạn hình dung. Ảnh thành phẩm thật sẽ được cập nhật sau khi tiệm khai trương.','Are the photos real work from the shop?','For now they are AI previews to help you imagine. Real photos will be added after the shop opens.']];
 var TX={vi:{menu:'Menu',city:'Hà Nội',snd:'Nhạc hộp',price:'Bảng giá',faq:'Hỏi đáp',ask:'Hỏi nhanh',hot:'Hotline / Zalo',hours:'mở cửa 10:00–21:00, cả tuần',ph:'Gõ câu hỏi, ví dụ: cọc, huỷ lịch, mẫu riêng',none:'Bavanail chưa có câu trả lời sẵn cho câu này. ',nonel:'Nhắn Zalo hỏi thợ',more:'Xem thêm ',morel:' câu hỏi',less:'Thu gọn',
- pnote:'Giá tham khảo của bản thử, áp dụng cho bộ 10 móng. Giá công khai, không mặc cả; thợ xem móng thật và chốt giá trước khi làm.',min:' phút',from:'từ ',per:' / móng',cat:'Nhóm dịch vụ'},
+ pnote:'Giá tham khảo của bản thử, áp dụng cho bộ 10 móng. Minh bạch từng mức giá; thợ xem móng thật và cùng bạn xác nhận trước khi làm.',min:' phút',from:'từ ',per:' / móng',cat:'Nhóm dịch vụ'},
  en:{menu:'Menu',city:'Hanoi',snd:'Music box',price:'Prices',faq:'FAQ',ask:'Quick question',hot:'Hotline / Zalo',hours:'open 10:00–21:00, every day',ph:'Type a question, e.g. deposit, cancel, own design',none:'No ready answer for that yet. ',nonel:'Ask us on Zalo',more:'Show ',morel:' more',less:'Show less',
- pnote:'Reference prices for this preview, for a set of 10 nails. Prices are public, no bargaining; the artist checks your nails and confirms before starting.',min:' min',from:'from ',per:' / nail',cat:'Service group'}};
+ pnote:'Reference prices for this preview, for a set of 10 nails. Every price is transparent; your artist checks your nails and confirms with you before starting.',min:' min',from:'from ',per:' / nail',cat:'Service group'}};
 var mc={cat:0,q:'',all:false},L=function(k){return TX[LANG][k]};
 function nb(t){return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d')}
 var STOP=['co','khong','the','toi','minh','la','gi','nao','bao','nhieu','duoc','em','a','oi','cho','va','cua','bavanail','shop','tiem','do','i','can','how','what','the','is','my','you','do','to'];
